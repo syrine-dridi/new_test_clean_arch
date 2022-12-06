@@ -8,10 +8,6 @@ class Request {
     updateDioInterceptors();
   }
 
-  void updateAuthorization(String token) {
-    _dio.options.headers['authorization'] = token;
-  }
-
   void updateDioInterceptors() {
     _dio.options = BaseOptions(
       baseUrl: baseUrl,

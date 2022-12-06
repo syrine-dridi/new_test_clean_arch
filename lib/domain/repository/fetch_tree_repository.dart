@@ -1,6 +1,3 @@
-
-
-
 import '../../core/ressources/data_state.dart';
 import '../../data/models/record/record_model.dart';
 

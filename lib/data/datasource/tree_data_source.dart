@@ -14,11 +14,10 @@ class TreeDataSourceImpl extends TreeDataSource {
   Future<DataState<List<Record>>> getTreeFromServer() async {
     try {
       final Request request = serviceLocator<Request>();
-      final response = await request.get('');
+      final response = await request.get('/records');
 
       if (response.statusCode == 200) {
         List<Record> treeList = [];
-        print(response.data);
         final treeListMap = response.data['records'];
         for (var tree in treeListMap) {
           treeList.add(Record.fromJson(tree));
