@@ -27,11 +27,12 @@ class FlutterRouter extends _i3.RootStackRouter {
     ListTreeScreen.name: (routeData) {
       return _i3.MaterialPageX<bool>(
         routeData: routeData,
-        child: const _i1.ListTreeScreen(),
+        child: _i1.ListTreeScreen(),
       );
     },
     TreeDetailsScreen.name: (routeData) {
-      final args = routeData.argsAs<TreeDetailsScreenArgs>();
+      final args = routeData.argsAs<TreeDetailsScreenArgs>(
+          orElse: () => const TreeDetailsScreenArgs());
       return _i3.MaterialPageX<bool>(
         routeData: routeData,
         child: _i2.TreeDetailsScreen(
@@ -72,7 +73,7 @@ class ListTreeScreen extends _i3.PageRouteInfo<void> {
 class TreeDetailsScreen extends _i3.PageRouteInfo<TreeDetailsScreenArgs> {
   TreeDetailsScreen({
     _i4.Key? key,
-    required _i5.Record? article,
+    _i5.Record? article,
   }) : super(
           TreeDetailsScreen.name,
           path: '/details_tree-screen',
@@ -88,7 +89,7 @@ class TreeDetailsScreen extends _i3.PageRouteInfo<TreeDetailsScreenArgs> {
 class TreeDetailsScreenArgs {
   const TreeDetailsScreenArgs({
     this.key,
-    required this.article,
+    this.article,
   });
 
   final _i4.Key? key;
