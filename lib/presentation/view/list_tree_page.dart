@@ -10,7 +10,7 @@ import '../../app/route/app_router.gr.dart';
 class ListTreeScreen extends StatelessWidget {
 
   final ListTreeViewModelBase _viewModel =
-  DependecyInjection.instance.get<ListTreeViewModelBase>();
+  DependencyInjection.instance.get<ListTreeViewModelBase>();
 
 
   @override

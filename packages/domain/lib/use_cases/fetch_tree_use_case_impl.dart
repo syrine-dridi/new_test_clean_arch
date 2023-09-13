@@ -7,7 +7,7 @@ import 'package:framework/use_case/fetch_tree_use_case.dart';
 class FetchTreeUseCaseImpl implements FetchTreeUseCase{
 
   TreeDataSource treeDataSource =
-  DependecyInjection.instance.get<TreeDataSource>();
+  DependencyInjection.instance.get<TreeDataSource>();
 
   @override
   Future<DataState<List<TreeEntity>>> getTreeFromServer() {

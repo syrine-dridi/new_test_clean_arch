@@ -14,7 +14,6 @@ import '../models/record/record_model.dart';
 class TreeDataSourceImpl implements TreeDataSource {
   final Dio dio = Dio();
 
-
   @override
   Future<DataState<List<TreeEntity>>> getTreeFromServer() async {
     try {
@@ -29,8 +28,7 @@ class TreeDataSourceImpl implements TreeDataSource {
               field?.hauteurenm,
               field?.libellefrancais,
               field?.circonferenceencm, field?.espece);
-          int recordId =int.parse(Record.fromJson(tree).record.recordid) ;
-          TreeEntity treeEntity =  TreeEntity(recordId,fieldsEntity);
+          TreeEntity treeEntity =  TreeEntity(1,fieldsEntity);
           treeList.add(treeEntity);
         }
 

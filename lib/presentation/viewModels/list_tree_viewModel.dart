@@ -21,7 +21,7 @@ abstract class ListTreeViewModelBase with Store {
   String? errorMessage = "";
 
   final FetchTreeUseCase _fetchTreeListUseCase =
-  DependecyInjection.instance.get<FetchTreeUseCase>();
+  DependencyInjection.instance.get<FetchTreeUseCase>();
 
   @action
   Future<void> getAllTree() async {

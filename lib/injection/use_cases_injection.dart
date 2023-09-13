@@ -3,6 +3,6 @@ import 'package:framework/dependency_injection.dart';
 import 'package:framework/use_case/fetch_tree_use_case.dart';
 
 void registerUseCases() {
-  DependecyInjection.instance
+  DependencyInjection.instance
       .inject<FetchTreeUseCase>(FetchTreeUseCaseImpl());
 }
