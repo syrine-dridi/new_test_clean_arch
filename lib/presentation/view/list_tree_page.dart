@@ -1,15 +1,17 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:new_test_clean_arch/core/service_locator.dart';
-import 'package:new_test_clean_arch/data/models/record/record_model.dart';
+import 'package:framework/dependency_injection.dart';
+import 'package:framework/models/tree_entity.dart';
 import 'package:new_test_clean_arch/presentation/viewModels/list_tree_viewModel.dart';
 
 import '../../app/route/app_router.gr.dart';
 
 class ListTreeScreen extends StatelessWidget {
 
-  final _viewModel = serviceLocator<ListTreeViewModel>();
+  final ListTreeViewModelBase _viewModel =
+  DependecyInjection.instance.get<ListTreeViewModelBase>();
+
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +27,11 @@ class ListTreeScreen extends StatelessWidget {
             itemBuilder: (context, index) {
               final item = _viewModel.listTree[index];
               return ListTile(
-                title: Text(item.record.fields!.espece),
+                title: Text(
+                    'description : ${item.fields!.libellefrancais}'
+                ),
                 subtitle: Text(
-                  'description : ${item.record.fields!.espece}',
+                  'description : ${item.fields!.espece}',
                 ),
                 onTap: () {
                   //navigate to details screen
@@ -39,7 +43,7 @@ class ListTreeScreen extends StatelessWidget {
         })));
   }
 
-  void _onArticlePressed(BuildContext context, Record record) {
+  void _onArticlePressed(BuildContext context, TreeEntity record) {
     AutoRouter.of(context).push(TreeDetailsScreen(article: record));
   }
 }

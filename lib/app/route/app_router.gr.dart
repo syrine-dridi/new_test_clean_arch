@@ -14,7 +14,6 @@
 import 'package:auto_route/auto_route.dart' as _i3;
 import 'package:flutter/material.dart' as _i4;
 
-import '../../data/models/record/record_model.dart' as _i5;
 import '../../presentation/view/list_tree_page.dart' as _i1;
 import '../../presentation/view/tree_details_page.dart' as _i2;
 
@@ -37,7 +36,7 @@ class FlutterRouter extends _i3.RootStackRouter {
         routeData: routeData,
         child: _i2.TreeDetailsScreen(
           key: args.key,
-          article: args.article,
+          tree: args.article,
         ),
       );
     },
@@ -73,7 +72,7 @@ class ListTreeScreen extends _i3.PageRouteInfo<void> {
 class TreeDetailsScreen extends _i3.PageRouteInfo<TreeDetailsScreenArgs> {
   TreeDetailsScreen({
     _i4.Key? key,
-    _i5.Record? article,
+    dynamic article,
   }) : super(
           TreeDetailsScreen.name,
           path: '/details_tree-screen',
@@ -94,7 +93,7 @@ class TreeDetailsScreenArgs {
 
   final _i4.Key? key;
 
-  final _i5.Record? article;
+  final dynamic article;
 
   @override
   String toString() {

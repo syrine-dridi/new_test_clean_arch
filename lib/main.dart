@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'app/flavours/app_flavour.dart';
 import 'app/view/app.dart';
-import 'core/service_locator.dart';
+import 'injection/app_injection.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await setUpServiceLocator();
+  await setupInjectionDependencies();
   bootstrap(() => App());
 }

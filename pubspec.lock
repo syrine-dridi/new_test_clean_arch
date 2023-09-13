@@ -176,6 +176,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.2.4"
+  data:
+    dependency: "direct main"
+    description:
+      path: "packages/data"
+      relative: true
+    source: path
+    version: "0.0.1"
   dio:
     dependency: "direct main"
     description:
@@ -183,6 +190,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.6"
+  domain:
+    dependency: "direct main"
+    description:
+      path: "packages/domain"
+      relative: true
+    source: path
+    version: "0.0.1"
   fake_async:
     dependency: transitive
     description:
@@ -235,6 +249,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  framework:
+    dependency: "direct main"
+    description:
+      path: "packages/framework"
+      relative: true
+    source: path
+    version: "0.0.1"
   freezed:
     dependency: "direct dev"
     description:

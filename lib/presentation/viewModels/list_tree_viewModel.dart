@@ -1,18 +1,18 @@
+import 'package:framework/dependency_injection.dart';
+import 'package:framework/models/tree_entity.dart';
+import 'package:framework/ressources/dataState.dart';
+import 'package:framework/use_case/fetch_tree_use_case.dart';
 import 'package:mobx/mobx.dart';
 
-import '../../core/ressources/data_state.dart';
-import '../../core/service_locator.dart';
-import '../../data/models/record/record_model.dart';
-import '../../domain/usecase/fetch_tree_use_case.dart';
 
 part 'list_tree_viewModel.g.dart';
 
-class ListTreeViewModel = _ListTreeViewModelBase with _$ListTreeViewModel;
+class ListTreeViewModel = ListTreeViewModelBase with _$ListTreeViewModel;
 
-abstract class _ListTreeViewModelBase with Store {
+abstract class ListTreeViewModelBase with Store {
 
   @observable
-  List<Record> listTree = [];
+  List<TreeEntity> listTree = [];
 
   @observable
   bool isLoadingTrees = false;
@@ -20,11 +20,14 @@ abstract class _ListTreeViewModelBase with Store {
   @observable
   String? errorMessage = "";
 
+  final FetchTreeUseCase _fetchTreeListUseCase =
+  DependecyInjection.instance.get<FetchTreeUseCase>();
+
   @action
   Future<void> getAllTree() async {
-    DataState<List<Record>> result;
+    DataState<List<TreeEntity>> result;
     isLoadingTrees = true;
-    result = await serviceLocator<FetchTreeUseCase>()
+    result = await _fetchTreeListUseCase
         .getTreeFromServer()
         .whenComplete(() => isLoadingTrees = false);
     if (result is DataSuccess ) {

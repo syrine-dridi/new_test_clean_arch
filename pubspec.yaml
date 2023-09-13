@@ -47,6 +47,13 @@ dependencies:
   flutter_mobx: ^2.0.6+5
   shared_preferences: ^0.5.3+4
 
+  framework:
+    path: packages/framework
+  data:
+    path: packages/data
+  domain:
+    path: packages/domain
+
 
 dev_dependencies:
   flutter_test:
