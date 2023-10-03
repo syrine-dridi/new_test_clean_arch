@@ -1,15 +1,15 @@
 class FieldsEntity {
-  final String? adresse;
-  final int? hauteurenm;
-  final String? libellefrancais;
-  final int? circonferenceencm;
-  final String? espece;
+   String? adresse;
+   int? hauteurenm;
+   String? libellefrancais;
+   int? ncirconferenceencm;
+   String? espece;
 
-  const FieldsEntity(
+   FieldsEntity(
       this.adresse,
       this.hauteurenm,
       this.libellefrancais,
-      this.circonferenceencm,
+      this.ncirconferenceencm,
       this.espece
       );
 }

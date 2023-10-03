@@ -13,6 +13,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i3;
 import 'package:flutter/material.dart' as _i4;
+import 'package:framework/models/tree_entity.dart' as _i5;
 
 import '../../presentation/view/list_tree_page.dart' as _i1;
 import '../../presentation/view/tree_details_page.dart' as _i2;
@@ -36,7 +37,7 @@ class FlutterRouter extends _i3.RootStackRouter {
         routeData: routeData,
         child: _i2.TreeDetailsScreen(
           key: args.key,
-          tree: args.article,
+          tree: args.tree,
         ),
       );
     },
@@ -72,13 +73,13 @@ class ListTreeScreen extends _i3.PageRouteInfo<void> {
 class TreeDetailsScreen extends _i3.PageRouteInfo<TreeDetailsScreenArgs> {
   TreeDetailsScreen({
     _i4.Key? key,
-    dynamic article,
+    _i5.TreeEntity? tree,
   }) : super(
           TreeDetailsScreen.name,
           path: '/details_tree-screen',
           args: TreeDetailsScreenArgs(
             key: key,
-            article: article,
+            tree: tree,
           ),
         );
 
@@ -88,15 +89,15 @@ class TreeDetailsScreen extends _i3.PageRouteInfo<TreeDetailsScreenArgs> {
 class TreeDetailsScreenArgs {
   const TreeDetailsScreenArgs({
     this.key,
-    this.article,
+    this.tree,
   });
 
   final _i4.Key? key;
 
-  final dynamic article;
+  final _i5.TreeEntity? tree;
 
   @override
   String toString() {
-    return 'TreeDetailsScreenArgs{key: $key, article: $article}';
+    return 'TreeDetailsScreenArgs{key: $key, tree: $tree}';
   }
 }

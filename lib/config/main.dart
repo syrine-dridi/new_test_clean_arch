@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'app/flavours/app_flavour.dart';
-import 'app/view/app.dart';
-import 'injection/app_injection.dart';
+import '../app/flavours/app_flavour.dart';
+import '../app/view/app.dart';
+import '../injection/app_injection.dart';
 
 
 void main() async {

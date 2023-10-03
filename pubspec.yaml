@@ -31,8 +31,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  freezed_annotation: ^2.2.0
   json_annotation: ^4.6.0
+  flutter_platform_widgets: ^3.3.5
+  universal_platform: ^1.0.0+1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -45,7 +46,7 @@ dependencies:
   # mobx
   mobx: ^2.2.0
   flutter_mobx: ^2.0.6+5
-  shared_preferences: ^0.5.3+4
+  shared_preferences: ^2.2.1
 
   framework:
     path: packages/framework
@@ -53,6 +54,7 @@ dependencies:
     path: packages/data
   domain:
     path: packages/domain
+  http: ^0.13.5
 
 
 dev_dependencies:

@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:framework/models/tree_entity.dart';
+import 'package:new_test_clean_arch/design_system/molecules/tree_details.dart';
 
 class TreeDetailsScreen extends StatelessWidget {
   final TreeEntity? tree;
@@ -11,7 +12,6 @@ class TreeDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Use the Todo to create the UI.
     return Scaffold(
       appBar: AppBar(
         title: Text('title : ${tree!.fields!.libellefrancais}'),
@@ -21,10 +21,15 @@ class TreeDetailsScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Espece : ${tree!.fields!.espece}'),
-          Text('Adresse : ${tree!.fields!.adresse}'),
-          Text('Hauteur : ${tree!.fields!.hauteurenm}'),
-          Text('Circonférence : ${tree!.fields!.circonferenceencm}')
+
+          rowTreeDetails(context : context ,
+              details: tree!.fields!.espece!),
+          rowTreeDetails(context : context ,
+              details: tree!.fields!.adresse!),
+          rowTreeDetails(context : context ,
+              details: tree!.fields!.hauteurenm.toString()),
+          rowTreeDetails(context : context ,
+              details: tree!.fields!.ncirconferenceencm.toString())
         ],
       ),
     );
