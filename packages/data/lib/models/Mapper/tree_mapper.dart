@@ -5,7 +5,6 @@ import 'package:framework/models/tree_entity.dart';
 
 import '../records_model.dart';
 
-
 extension RecordToEntity on Records {
   List<TreeEntity> toEntityFrom() {
     List<TreeEntity> trees = [];

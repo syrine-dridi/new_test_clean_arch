@@ -1,5 +1,3 @@
-import 'geoPoint2D_model.dart';
-
 class Fields {
   int? idbase;
   String? typeemplacement;
@@ -17,7 +15,6 @@ class Fields {
   int? hauteurenm;
   String? stadedeveloppement;
   String? remarquable;
-  GeoPoint2D? geoPoint2D;
 
   Fields(
       {this.idbase,
@@ -35,8 +32,7 @@ class Fields {
       this.circonferenceencm,
       this.hauteurenm,
       this.stadedeveloppement,
-      this.remarquable,
-      this.geoPoint2D});
+      this.remarquable});
 
   factory Fields.fromJson(Map<String, dynamic> json) {
     return Fields(
@@ -55,9 +51,6 @@ class Fields {
         circonferenceencm: json['circonferenceencm'],
         hauteurenm: json['hauteurenm'],
         stadedeveloppement: json['stadedeveloppement'],
-        remarquable: json['remarquable'],
-        geoPoint2D: json['geoPoint2D'] != null
-            ? GeoPoint2D.fromJson(json['geoPoint2D'])
-            : null);
+        remarquable: json['remarquable']);
   }
 }

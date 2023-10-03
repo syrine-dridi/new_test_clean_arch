@@ -18,8 +18,8 @@ import 'package:framework/models/tree_entity.dart' as _i5;
 import '../../presentation/view/list_tree_page.dart' as _i1;
 import '../../presentation/view/tree_details_page.dart' as _i2;
 
-class FlutterRouter extends _i3.RootStackRouter {
-  FlutterRouter([_i4.GlobalKey<_i4.NavigatorState>? navigatorKey])
+class AppRouter extends _i3.RootStackRouter {
+  AppRouter([_i4.GlobalKey<_i4.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override

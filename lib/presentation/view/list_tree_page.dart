@@ -44,6 +44,6 @@ class ListTreeScreen extends StatelessWidget {
   }
 
   void _onArticlePressed(BuildContext context, TreeEntity record) {
-    AutoRouter.of(context).push(TreeDetailsScreen());
+    AutoRouter.of(context).push(TreeDetailsScreen(tree: record));
   }
 }
