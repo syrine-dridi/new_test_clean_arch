@@ -1,56 +1,49 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:new_test_clean_arch/app/route/app_router.gr.dart';
-import 'package:new_test_clean_arch/data/models/record/record_model.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:framework/dependency_injection.dart';
+import 'package:framework/models/tree_entity.dart';
+import 'package:new_test_clean_arch/presentation/viewModels/list_tree_viewModel.dart';
 
-import '../bloc/list_tree_bloc.dart';
-import '../bloc/list_tree_state.dart';
+import '../../app/route/app_router.gr.dart';
 
 class ListTreeScreen extends StatelessWidget {
-  const ListTreeScreen({Key? key}) : super(key: key);
+
+  final ListTreeViewModelBase _viewModel =
+  DependencyInjection.instance.get<ListTreeViewModelBase>();
+
 
   @override
   Widget build(BuildContext context) {
-    context.read<ListTreeBloc>().add(
-      const ListTreeFetchDataEvent(),
-    );
-    return BlocConsumer<ListTreeBloc, ListTreeState>(
-        listener: (context, state) {},
-        builder: (context, state) {
-          return Scaffold(
-            appBar: AppBar(
-              title: const Text('List Tree'),
-            ),
-            body: state is ListTreeLoadingState
-                ? const Center(
-              child: CircularProgressIndicator(),
-            )
-                : state is ListTreeLoadedState
-                ? ListView.separated(
-              separatorBuilder: (_, __) => const Divider(),
-              itemCount: state.treelist!.length,
-              itemBuilder: (context, index) {
-                final item = state.treelist![index];
-                return ListTile(
-                  title: Text(item.record.fields!.libellefrancais),
-                  subtitle: Text(
-                    'description : ${item.record.fields!.espece}',
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  onTap: () {
-                    //navigate to details screen
-                    _onArticlePressed(context,item);
-                  },
-                );
-              },
-            )
-                : Container(),
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text('List Tree'),
+        ),
+        body: Center(child: Observer(builder: (_) {
+          _viewModel.getAllTree();
+          return ListView.separated(
+            separatorBuilder: (_, __) => const Divider(),
+            itemCount: _viewModel.listTree.length,
+            itemBuilder: (context, index) {
+              final item = _viewModel.listTree[index];
+              return ListTile(
+                title: Text(
+                    'description : ${item.fields!.libellefrancais}'
+                ),
+                subtitle: Text(
+                  'description : ${item.fields!.espece}',
+                ),
+                onTap: () {
+                  //navigate to details screen
+                  _onArticlePressed(context, item);
+                },
+              );
+            },
           );
-        });
+        })));
   }
-  void _onArticlePressed(BuildContext context, Record record) {
-    AutoRouter.of(context).push(TreeDetailsScreen(article: record));
+
+  void _onArticlePressed(BuildContext context, TreeEntity record) {
+    AutoRouter.of(context).push(TreeDetailsScreen());
   }
 }
