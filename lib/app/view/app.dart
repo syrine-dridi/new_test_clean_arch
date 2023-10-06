@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:new_test_clean_arch/config/app_config.dart';
 
 import '../../config/theme_app_config.dart';
-import '../route/app_router.gr.dart';
+import '../../navigation/app_router.gr.dart';
 
 class App extends StatelessWidget {
 

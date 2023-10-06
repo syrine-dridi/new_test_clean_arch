@@ -1,5 +1,6 @@
-import 'package:data/models/record_model.dart';
+import 'dart:core';
 
+import 'package:data/models/remote/record_model.dart';
 
 class Records {
   List<Record>? records;

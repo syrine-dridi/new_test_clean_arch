@@ -4,5 +4,5 @@ import '../ressources/dataState.dart';
 
 
 abstract class FetchTreeUseCase {
-  Future<DataState<List<TreeEntity>>> getTreeFromServer() ;
+  Future<List<TreeEntity>> getTreeFromServer() ;
 }

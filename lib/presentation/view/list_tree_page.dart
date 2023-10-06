@@ -5,13 +5,14 @@ import 'package:framework/dependency_injection.dart';
 import 'package:framework/models/tree_entity.dart';
 import 'package:new_test_clean_arch/presentation/viewModels/list_tree_viewModel.dart';
 
-import '../../app/route/app_router.gr.dart';
+import '../../navigation/app_router.gr.dart';
 
 class ListTreeScreen extends StatelessWidget {
 
   final ListTreeViewModelBase _viewModel =
   DependencyInjection.instance.get<ListTreeViewModelBase>();
 
+  ListTreeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,10 +34,7 @@ class ListTreeScreen extends StatelessWidget {
                 subtitle: Text(
                   'description : ${item.fields!.espece}',
                 ),
-                onTap: () {
-                  //navigate to details screen
-                  _onArticlePressed(context, item);
-                },
+                onTap: () => _onArticlePressed(context, item)
               );
             },
           );

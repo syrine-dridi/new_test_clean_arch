@@ -1,12 +1,15 @@
 
 import 'package:flutter/material.dart';
 import 'package:framework/models/tree_entity.dart';
+import 'package:new_test_clean_arch/config/design_system_base.dart';
 import 'package:new_test_clean_arch/design_system/molecules/tree_details.dart';
 
 class TreeDetailsScreen extends StatelessWidget {
   final TreeEntity? tree;
 
-  const TreeDetailsScreen({Key? key, this.tree}) : super(key: key);
+  TreeDetailsScreen({Key? key, this.tree}) : super(key: key);
+
+  DesignSystem designSystem = DesignSystem();
 
   static const routeName = '/details_tree-screen';
 
@@ -22,13 +25,13 @@ class TreeDetailsScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
 
-          rowTreeDetails(context : context ,
+          designSystem.rowTreeDetails(context : context ,
               details: tree!.fields!.espece!),
-          rowTreeDetails(context : context ,
+          designSystem.rowTreeDetails(context : context ,
               details: tree!.fields!.adresse!),
-          rowTreeDetails(context : context ,
+          designSystem.rowTreeDetails(context : context ,
               details: tree!.fields!.hauteurenm.toString()),
-          rowTreeDetails(context : context ,
+          designSystem.rowTreeDetails(context : context ,
               details: tree!.fields!.ncirconferenceencm.toString())
         ],
       ),

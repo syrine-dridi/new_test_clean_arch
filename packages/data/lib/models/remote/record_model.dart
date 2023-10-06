@@ -1,7 +1,7 @@
-import 'package:data/models/tree_model.dart';
-
+import 'package:data/models/remote/tree_model.dart';
 
 class Record {
+
   Tree? record;
 
   Record({this.record});

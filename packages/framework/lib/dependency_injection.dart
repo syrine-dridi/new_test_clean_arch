@@ -9,4 +9,7 @@ class DependencyInjection {
   T get<T extends Object>() => GetIt.instance.get<T>();
 
   DependencyInjection._internal();
+
+  void injectLazy<T extends Object>(T Function() factory) =>
+      GetIt.instance.registerLazySingleton<T>(factory);
 }
