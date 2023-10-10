@@ -24,7 +24,6 @@ class TreeDetailsScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-
           designSystem.rowTreeDetails(context : context ,
               details: tree!.fields!.espece!),
           designSystem.rowTreeDetails(context : context ,

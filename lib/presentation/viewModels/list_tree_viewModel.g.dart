@@ -9,6 +9,23 @@ part of 'list_tree_viewModel.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$ListTreeViewModel on ListTreeViewModelBase, Store {
+  late final _$listTreeViewModelStateAtom = Atom(
+      name: 'ListTreeViewModelBase.listTreeViewModelState', context: context);
+
+  @override
+  ListTreeViewModelState get listTreeViewModelState {
+    _$listTreeViewModelStateAtom.reportRead();
+    return super.listTreeViewModelState;
+  }
+
+  @override
+  set listTreeViewModelState(ListTreeViewModelState value) {
+    _$listTreeViewModelStateAtom
+        .reportWrite(value, super.listTreeViewModelState, () {
+      super.listTreeViewModelState = value;
+    });
+  }
+
   late final _$listTreeAtom =
       Atom(name: 'ListTreeViewModelBase.listTree', context: context);
 
@@ -22,22 +39,6 @@ mixin _$ListTreeViewModel on ListTreeViewModelBase, Store {
   set listTree(List<TreeEntity> value) {
     _$listTreeAtom.reportWrite(value, super.listTree, () {
       super.listTree = value;
-    });
-  }
-
-  late final _$isLoadingTreesAtom =
-      Atom(name: 'ListTreeViewModelBase.isLoadingTrees', context: context);
-
-  @override
-  bool get isLoadingTrees {
-    _$isLoadingTreesAtom.reportRead();
-    return super.isLoadingTrees;
-  }
-
-  @override
-  set isLoadingTrees(bool value) {
-    _$isLoadingTreesAtom.reportWrite(value, super.isLoadingTrees, () {
-      super.isLoadingTrees = value;
     });
   }
 
@@ -68,8 +69,8 @@ mixin _$ListTreeViewModel on ListTreeViewModelBase, Store {
   @override
   String toString() {
     return '''
+listTreeViewModelState: ${listTreeViewModelState},
 listTree: ${listTree},
-isLoadingTrees: ${isLoadingTrees},
 errorMessage: ${errorMessage}
     ''';
   }
