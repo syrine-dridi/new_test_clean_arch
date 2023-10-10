@@ -1,17 +1,18 @@
 import 'package:data/models/Mapper/tree_mapper.dart';
-import 'package:framework/data_source/app_local_database.dart';
 import 'package:framework/data_source/tree_local_data_source.dart';
+import 'package:framework/db/local_storage.dart';
 import 'package:framework/dependency_injection.dart';
 import 'package:framework/models/tree_entity.dart';
 
 import '../models/local/local_tree.dart';
 
-class TreeLocalDataSourceImpl implements TreeLocaleDataSource {
+class TreeLocalDataSourceImpl implements TreeLocalDataSource {
+
   final LocalStorage localStorage =
-      DependencyInjection.instance.get<LocalStorage>();
+  DependencyInjection.instance.get<LocalStorage>();
 
   @override
-  List<int> saveTreeList(List<TreeEntity> list) {
+  Future<List<int>> saveTreeList(List<TreeEntity> list) async {
     List<LocalTree> localList = [];
     for (var item in list) {
       localList.add(fromTreeToLocalTree(item));

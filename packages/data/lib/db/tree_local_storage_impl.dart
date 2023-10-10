@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:framework/data_source/app_local_database.dart';
+import 'package:framework/db/local_storage.dart';
 
 import '../models/local/object_box/objectbox.g.dart';
 

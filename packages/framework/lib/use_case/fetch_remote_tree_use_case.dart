@@ -1,8 +1,5 @@
 import 'package:framework/models/tree_entity.dart';
 
-import '../ressources/dataState.dart';
-
-
-abstract class FetchTreeUseCase {
+abstract class FetchRemoteTreeUseCase {
   Future<List<TreeEntity>> getTreeFromServer() ;
 }

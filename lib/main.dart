@@ -9,7 +9,6 @@ void main() async {
   final appConfig = AppConfig(
       theme: ThemeAppConfig(yourColor: const Color.fromARGB(00, 13, 20, 16)),
       title: 'Liste des arbres');
-
   WidgetsFlutterBinding.ensureInitialized();
   await setupInjectionDependencies(config: appConfig);
   runApp(App());
