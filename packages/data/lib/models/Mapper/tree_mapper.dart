@@ -1,10 +1,10 @@
-import 'package:data/models/fields_model.dart';
-import 'package:data/models/tree_model.dart';
+import 'package:data/models/local/local_tree.dart';
+import 'package:data/models/remote/fields_model.dart';
 import 'package:framework/models/fields_entity.dart';
 import 'package:framework/models/tree_entity.dart';
 
-import '../records_model.dart';
-
+import '../remote/records_model.dart';
+import '../remote/tree_model.dart';
 
 extension RecordToEntity on Records {
   List<TreeEntity> toEntityFrom() {
@@ -12,7 +12,7 @@ extension RecordToEntity on Records {
     records?.forEach((element) {
       Fields? fields = element.record?.fields;
       if (fields != null) {
-        trees.add(TreeEntity(element.record?.recordid, fields.toEntityFrom()));
+        trees.add(TreeEntity(fields.toEntityFrom()));
       }
     });
     return trees;
@@ -20,10 +20,26 @@ extension RecordToEntity on Records {
 }
 
 extension TreeToEntity on Tree {
-  TreeEntity toEntityFrom() => TreeEntity(recordid, fields?.toEntityFrom());
+  TreeEntity toEntityFrom() => TreeEntity(fields?.toEntityFrom());
 }
 
 extension FieldsToEntity on Fields {
   FieldsEntity toEntityFrom() => FieldsEntity(
-      adresse, hauteurenm, libellefrancais, circonferenceencm, espece);
+      idbase, adresse, hauteurenm, libellefrancais, circonferenceencm, espece);
+}
+
+extension LocalToEntity on List<LocalTree> {
+  List<TreeEntity> toEntityFromLocal() {
+    List<TreeEntity> trees = [];
+    forEach((element) {
+      trees.add(TreeEntity(FieldsEntity(
+          element.id,
+          element.address,
+          element.height,
+          element.name,
+          element.circumference,
+          element.espece)));
+    });
+    return trees;
+  }
 }
