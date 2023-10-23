@@ -5,6 +5,7 @@ import 'package:framework/dependency_injection.dart';
 import 'package:framework/models/tree_entity.dart';
 import 'package:new_test_clean_arch/design_system/atoms/indicator.dart';
 import 'package:new_test_clean_arch/presentation/viewModels/list_tree_viewModel.dart';
+import 'package:new_test_clean_arch/presentation/viewModels/list_tree_viewModel_State.dart';
 
 import '../../config/design_system_base.dart';
 import '../../navigation/app_router.gr.dart';
@@ -19,14 +20,14 @@ class ListTreeScreen extends StatelessWidget {
 
   Widget checkState({BuildContext? context}) {
     switch (_viewModel.listTreeViewModelState) {
-      case ListTreeViewModelState.isLoading:
+      case IsLoading():
         return designSystem.indicator(context: context);
-      case ListTreeViewModelState.isLoaded:
+      case IsLoaded(data: List<TreeEntity> data):
         return ListView.separated(
           separatorBuilder: (_, __) => const Divider(),
-          itemCount: _viewModel.listTree.length,
+          itemCount: data.length,
           itemBuilder: (context, index) {
-            final item = _viewModel.listTree[index];
+            final item = data[index];
             return ListTile(
                 title: Text('description : ${item.fields!.libellefrancais}'),
                 subtitle: Text(
@@ -35,8 +36,10 @@ class ListTreeScreen extends StatelessWidget {
                 onTap: () => _onArticlePressed(context, item));
           },
         );
-      default:
-        return designSystem.indicator(context: context);
+      case IsEmpty():
+        return const Text('No items');
+      case IsError():
+        return const Text('Error');
     }
   }
 

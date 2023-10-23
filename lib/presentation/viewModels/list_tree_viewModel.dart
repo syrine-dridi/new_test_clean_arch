@@ -5,29 +5,23 @@ import 'package:framework/use_case/save_local_list_tree_use_case.dart';
 import 'package:mobx/mobx.dart';
 import 'package:new_test_clean_arch/base/view_model_base.dart';
 
+import 'list_tree_viewModel_State.dart';
+
 part 'list_tree_viewModel.g.dart';
 
 class ListTreeViewModel = ListTreeViewModelBase with _$ListTreeViewModel;
 
-enum ListTreeViewModelState { isLoading, isLoaded, isEmpty ,isError }
 
-abstract class ListTreeViewModelBase with Store, ViewModel {
-
-  @observable
-  ListTreeViewModelState listTreeViewModelState =
-      ListTreeViewModelState.isLoading;
+abstract class ListTreeViewModelBase with Store implements ViewModel {
 
   @observable
-  List<TreeEntity> listTree = [];
-
-  @observable
-  String? errorMessage = "";
+  ListTreeViewModelState listTreeViewModelState = IsLoading();
 
   final FetchTreeUseCase _fetchTreeListUseCase =
-      DependencyInjection.instance.get<FetchTreeUseCase>();
+  DependencyInjection.instance.get<FetchTreeUseCase>();
 
   final SaveLocalListTreeUseCase saveLocalListTreeListUseCase =
-      DependencyInjection.instance.get<SaveLocalListTreeUseCase>();
+  DependencyInjection.instance.get<SaveLocalListTreeUseCase>();
 
   @override
   void init() {}
@@ -35,12 +29,21 @@ abstract class ListTreeViewModelBase with Store, ViewModel {
   @override
   void dispose() {}
 
+  void _setError() {
+    listTreeViewModelState = IsError();
+  }
+
+  void _setListTree(List<TreeEntity> result) {
+    listTreeViewModelState = IsLoaded(result);
+    saveLocalListTreeListUseCase.saveLocalListTree(result);
+  }
+
   @action
   Future<void> getAllTree() async {
-    listTreeViewModelState = ListTreeViewModelState.isLoading;
-    listTree = await _fetchTreeListUseCase
+    listTreeViewModelState = IsLoading();
+    _fetchTreeListUseCase
         .getListTree()
-        .whenComplete(() => listTreeViewModelState = ListTreeViewModelState.isLoaded);
-    saveLocalListTreeListUseCase.saveLocalListTree(listTree);
+        .then((value) =>_setListTree(value))
+        .onError((error, stackTrace) => _setError());
   }
 }

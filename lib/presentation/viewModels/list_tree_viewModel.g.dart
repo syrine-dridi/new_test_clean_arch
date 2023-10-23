@@ -26,38 +26,6 @@ mixin _$ListTreeViewModel on ListTreeViewModelBase, Store {
     });
   }
 
-  late final _$listTreeAtom =
-      Atom(name: 'ListTreeViewModelBase.listTree', context: context);
-
-  @override
-  List<TreeEntity> get listTree {
-    _$listTreeAtom.reportRead();
-    return super.listTree;
-  }
-
-  @override
-  set listTree(List<TreeEntity> value) {
-    _$listTreeAtom.reportWrite(value, super.listTree, () {
-      super.listTree = value;
-    });
-  }
-
-  late final _$errorMessageAtom =
-      Atom(name: 'ListTreeViewModelBase.errorMessage', context: context);
-
-  @override
-  String? get errorMessage {
-    _$errorMessageAtom.reportRead();
-    return super.errorMessage;
-  }
-
-  @override
-  set errorMessage(String? value) {
-    _$errorMessageAtom.reportWrite(value, super.errorMessage, () {
-      super.errorMessage = value;
-    });
-  }
-
   late final _$getAllTreeAsyncAction =
       AsyncAction('ListTreeViewModelBase.getAllTree', context: context);
 
@@ -69,9 +37,7 @@ mixin _$ListTreeViewModel on ListTreeViewModelBase, Store {
   @override
   String toString() {
     return '''
-listTreeViewModelState: ${listTreeViewModelState},
-listTree: ${listTree},
-errorMessage: ${errorMessage}
+listTreeViewModelState: ${listTreeViewModelState}
     ''';
   }
 }
